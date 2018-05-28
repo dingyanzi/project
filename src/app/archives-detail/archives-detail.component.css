@@ -1,0 +1,316 @@
+.oneline{
+  width: 100px;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.showCen {
+  background: url(../../assets/images/5.png) repeat;
+}
+.showCen .showBox {
+  width: 1040px;
+  background: #fff;
+  padding: 70px 56px;
+  padding-bottom: 145px;
+}
+
+.showCen .showBox .showtip h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #252525;
+  font-weight: normal;
+}
+
+.showCen .showBox .showtip .tip {
+  background: url(../../assets/images/16.jpg) no-repeat;
+  width: 876px;
+  height: 52px;
+  line-height: 52px;
+  margin: 0 auto;
+  margin-top: 28px;
+  padding: 0 30px;
+  position: relative;
+}
+
+.showCen .showBox .showtip .tip span {
+  position: absolute;
+}
+
+.showCen .showBox .showtip .tip span,
+.showCen .showBox .showtip .tip span.down a {
+  font-size: 16px;
+  color: #a27b2e;
+}
+
+.showCen .showBox .showtip .tip span.num {
+  left: 342px;
+}
+
+.showCen .showBox .showtip .tip span.see {
+  left: 630px;
+}
+
+.showCen .showBox .showtip .tip span i {
+  font-size: 16px;
+  color: #a27b2e;
+  font-style: normal;
+}
+
+.showCen .showBox .showtxt{
+  width:870px;
+  margin: 0 auto;
+  padding-top: 15px;
+}
+.showCen .showBox .showtxt,
+.showCen .showBox .showtxt p {
+  font-size: 16px;
+  color: #555555;
+  line-height: 28px;
+}
+
+.showCen .showBox .showtxt .img {
+  width: 100%;
+  height: 546px;
+  display: block;
+  margin: 40px auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+.showCen .showBox .showtxt .img img{
+  max-width: 100% !important;
+  max-height: 94% !important;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.showCen .showBox .showpage {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.showCen .showBox .showpage a {
+  font-size: 16px;
+  color: #333;
+}
+
+.showCen .showBox .showpage a:hover {
+  text-decoration: underline;
+}
+
+.showCen .bannerBox {
+  margin: 0 auto;
+  display: block;
+  width: 1100px;
+  height: 179px;
+  position: relative;
+  background: url(../../assets/images/20.jpg) no-repeat center center;
+}
+
+.showCen .bannerBox img {
+  width: 1100px;
+  height: 179px;
+}
+
+.showCen .bannerBox h1 {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  padding-top: 80px;
+  text-shadow: 0 1px 0 #513600;
+}
+.showCen .listBox{
+  margin-bottom: 50px;
+}
+.showCen .listBox .tip {
+  margin-bottom: 20px;
+}
+
+.showCen .listBox  h3 {
+  float: left;
+  font-size: 18px;
+  color: #84312d;
+  font-weight: normal;
+}
+
+.showCen .listBox .tip .searchList {
+  float: right;
+}
+.showCen .listBox .tip .searchList label.shi{
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  color: #333;
+  margin-right: 10px;
+  float: left;
+}
+
+.showCen .mainBox {
+  width: 1040px;
+  padding: 26px 30px 150px 30px;
+}
+
+
+.currentLocation {
+  color: #525252;
+  width: 100%;
+  height: 44px;
+  line-height: 46px;
+  background: #FFFFFF;
+  box-shadow: inset 0 0 1px #d5d4d0;
+  -webkit-box-shadow: inset 0 0 3px #d5d4d0;
+  -moz-box-shadow: inset 0 0 1px #d5d4d0;
+  -ms-box-shadow: inset 0 0 1px #d5d4d0;
+  -o-box-shadow: inset 0 0 1px #d5d4d0;
+}
+
+.currentLocation a {
+  font-size: 14px;
+  color: #525252;
+  height: 45px;
+  display: inline-block;
+}
+
+.currentLocation a.home {
+  background: url(../../assets/images/home.png) left center no-repeat;
+  background-size: 17px;
+  text-indent: 20px;
+}
+
+.currentLocation .mainBox {
+  position: relative;
+}
+
+.currentLocation .mainBox a.return {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: url(../../assets/images/return.png) no-repeat left center;
+  padding-left: 20px;
+}
+
+
+.wrapimg {
+  margin: 0 auto;
+  width: 870px;
+  padding-left: 42px;
+  height: 98px;
+  overflow: hidden;
+  position: relative;
+  background: #fafafa;
+  border: 1px solid #d2d2d2;
+  margin-bottom: 12px;
+}
+.wrapimg .imgcons{
+  width: 786px;
+  position: absolute;
+  left: 42px;
+  height: 98px;
+  top: 0px;
+  padding: 12px 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.imgcons ul.imgBtn {
+  width: 999999999999999999px;
+  display: block;
+  height: 74px;
+  overflow: hidden;
+}
+
+.imgcons ul.imgBtn li {
+  width: 56px;
+  height: 74px;
+  overflow: hidden;
+  margin-right: 10px;
+  float: left;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.imgcons ul.imgBtn li.on .limit{
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top center;
+  border: 2px solid #003639;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.imgcons ul.imgBtn li .limit{
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #FFFFFF;
+  overflow: hidden;
+  position: relative;
+}
+.imgcons ul.imgBtn li .limit img{
+  position: absolute;
+  top:0;
+  z-index: 999;
+  margin: 0 !important;
+}
+
+.wrapimg #prev,
+.wrapimg #next {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  overflow: hidden;
+  height: 98px;
+  width: 42px;
+  background: url(../../assets/images/arrow.png) no-repeat 16px center;
+  background-size: 100% auto;
+  cursor: pointer
+}
+
+.wrapimg #next {
+  left: auto !important;
+  right: 0px !important;
+  background-position: -16px center;
+
+}
+.pint p{
+  text-indent: 28px !important;
+}
+.tolds {
+  position: fixed;
+  width: 88%;
+  height: 60px;
+  left:0;
+  right: 0;
+  top:0;
+  bottom:0;
+  margin: auto;
+  z-index: 99999;
+}
+.tolds i{
+  color: #FFFFFF !important;
+  font-size: 60px !important;
+  float: left;
+  cursor: pointer;
+}
+.tolds i+i{
+  color: #FFFFFF !important;
+  font-size: 60px !important;
+  float: right;
+  cursor: pointer;
+
+}
+.blur {
+  -webkit-filter: blur(1px); /* Chrome, Opera */
+  -moz-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=1, MakeShadow=false); /* IE6~IE9 */
+}

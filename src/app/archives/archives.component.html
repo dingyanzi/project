@@ -1,0 +1,260 @@
+<nz-spin [nzSpinning]="_isSpinning">
+		<div class="wrapTop">
+			<div class="mainBox">
+				<a routerLink="/public"><img class="logo" src="./assets/images/logo2.png"></a>
+				<div class="topBtn">
+          <a routerLink="/timeLine" class="timeLine">时间线</a>
+          <a routerLink="/worship" class="worship">网络祭拜</a>
+          <a  *ngIf="changeKey==false" routerLink="/admin" class="admin">个人中心</a>
+          <a  *ngIf="changeKey==true" class="go" (click)="showModal('0','登录')">登录</a>
+          <a  *ngIf="changeKey==true" class="reg" (click)="showModal('1','注册')">注册</a>
+
+
+				</div>
+				<div class="topTxt">
+					<!--<h2>简介：</h2>-->
+					<!--<p>2015年10月，联合国教科文组织正式认定《南京大屠杀档案》为世界记忆遗产。这些档案既有日本方面加害者的记录，也有美英等国第三方人士的记录，更有中国方面受害者的血泪控诉，历史线索清晰，记录完整。档案形式既有纸质文本，也有照片、电影胶片及其它实物等多种载体；档案内容多可互相印证、补充，真实性不容置疑。申报之时，我们曾按照联合国教科文组织的有关规定向国际社会郑重承诺公开相关档案。现在我们不仅公开了这些档案，而且还采取影印出版和线上发布的形式，供全世界读者查阅。相信爱好和平、具有正义感的世界人民会从中做出正确的判断。</p>-->
+				</div>
+			</div>
+		</div>
+		<div class="wrapCen">
+			<div class="searchTop">
+				<div class="mainBox">
+					<div class="searchBtn clearfix">
+						<input type="text" placeholder="请输入关键词" [(ngModel)]="_value" (keyup.enter)="jump()" />
+						<a [routerLink]="['/archives-list',{id:'',item:'7',ifs:'0',keyword:_value,chid:''}]" class="btn"></a>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<!--<div class="newFile">-->
+				<!--<div class="mainBox">-->
+          <!--<div class="fitip">-->
+            <!--<h3 style="float: left">新增档案</h3>-->
+            <!--<a style="float: right;color: #6A1B1B" [routerLink]="['/archives-list',{id:'',item:'7',ifs:'0',keyword:'',chid:''}]">查看更多</a>-->
+          <!--</div>-->
+          <!--<nz-carousel>-->
+            <!--<div class="imgBox" nz-carousel-content *ngFor="let x of results">-->
+              <!--<ul class="cc">-->
+                <!--<li *ngFor="let tabs of x">-->
+                  <!--<a [routerLink]="['/archives-detail',{id:tabs['id'],arch:'1',desc:''}]" breadcrumbName="tabs['name']" [ngStyle]="{'background-image':'url('+tabs['picurl']+')'}"></a>-->
+                  <!--<div class="txt">-->
+                    <!--<div class="des clearfix">-->
+                      <!--<nz-tooltip [nzTitle]="tabs['name']" [nzPlacement]="'bottom'">-->
+                        <!--<h3 nz-tooltip>{{tabs['name']}}</h3>-->
+                      <!--</nz-tooltip>-->
+                      <!--<nz-tooltip [nzTitle]="tabs['archiveName']" [nzPlacement]="'bottom'">-->
+                        <!--<span nz-tooltip>{{tabs['archiveName']}}</span>-->
+                      <!--</nz-tooltip>-->
+                    <!--</div>-->
+                    <!--<p  *ngIf="tabs['description']">-->
+                      <!--<i [innerHtml]="tabs['description']" class="onelines"></i>-->
+                    <!--</p>-->
+                  <!--</div>-->
+                <!--</li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</nz-carousel>-->
+        <!--</div>-->
+			<!--</div>-->
+			<div class="fileSet">
+				<div class="mainBox">
+					<h1>世界记忆名录  <span style="font-size: 25px;">——  南京大屠杀档案</span></h1>
+				</div>
+			</div>
+			<div class="fileCen clearfix">
+				<div class="mainBox clearfix" style="position: relative">
+          <nz-tabset [nzTabPosition]="'top'" style="overflow: inherit;top:-294px;">
+            <nz-tab *ngFor="let tab of id;let i = index;">
+              <ng-template #nzTabHeading>
+                <div class="cube-wrap"  (click)="tap(tab['id'],i)" [ngClass]="{'now':i==now}" style="cursor: pointer">
+                  <div class="cube depth">
+                    <div class="front-pane"></div>
+                    <!--<div class="back-pane"></div>-->
+                    <div class="top-pane"></div>
+                    <div class="bottom-pane"></div>
+                    <div class="left-pane"></div>
+                    <div class="right-pane"></div>
+                  </div>
+                </div>
+
+
+
+              </ng-template>
+              <div style="width: 100%;margin-bottom: 34px;padding-bottom:20px;overflow:visible ">
+                <div>
+                  <h2 style="display:block;margin-bottom: 24px;font-size: 16px;color: #333;line-height: 32px;height: 186px;border: #aea79f solid 1px;padding: 24px;padding-top:38px;position: relative">
+                    <span style="color:#6B1B1C;position: absolute;left: 24px;top:-14px;background-color:#F6D8B3;display: block;padding: 6px 12px; ">
+                      馆藏档案介绍
+                    </span>
+                    {{tab['description']}}
+                  </h2>
+                  <div class="navgroup">
+                    <span style="color:#6B1B1C;height: 64px;width: 88px;text-align: left;font-size: 16px;float: left;line-height: 64px;">
+                      档案类别 :
+                    </span>
+                    <div>
+                      <div class="leftnav" (click)="leftmove()">
+                        <i class="anticon anticon-caret-left"></i>
+                      </div>
+                      <div class="containers" [ngStyle]="{'left':movpx+'px'}">
+                          <span class="fenl" *ngFor="let item of curList;" [routerLink]="['/archives-list',{id:firstId,item:now,ifs:'0',keyword:'',chid:item['id'] }]">
+                         <nz-tooltip  [nzTitle]="item['name']" [nzPlacement]="'bottom'">
+                           <i nz-tooltip class="oneline" >
+                             {{item['name']}}
+                           </i>
+                         </nz-tooltip>
+                      </span>
+                         <!--<nz-dropdown [nzTrigger]="'click'" >-->
+                        <!--<a class="ant-dropdown-link" nz-dropdown>-->
+                    <!---->
+                        <!--</a>-->
+                        <!--<ul nz-menu>-->
+                          <!--<li nz-menu-item *ngFor="let key of item.records">-->
+                            <!--<a  rel="noopener noreferrer" [routerLink]="['/archives-detail',{id:key['id'],arch:'1',desc:''}]">{{key['name']}}</a>-->
+                          <!--</li>-->
+                        <!--</ul>-->
+                      <!--</nz-dropdown>-->
+                      </div>
+                      <div class="rightnav" (click)="rightmove()">
+                        <i class="anticon anticon-caret-right"></i>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+              </div>
+            </nz-tab>
+          </nz-tabset>
+				</div>
+        <div class="filetxt">
+          <div class="ttle">
+            <span>
+              精选档案
+            </span>
+            <a [routerLink]="['/archives-list',{id:'',item:7,ifs:'0',keyword:'',chid:''}]" class="more">查看更多</a>
+          </div>
+          <dl class="lt">
+            <div class="posfix filecybox" [routerLink]="['/archives-detail',{id:rec['id'],arch:'1',desc:''}]">
+              <a [ngStyle]="{'background-image':'url('+rec['picurl']+')'}"></a>
+              <div class="txt">
+                <div class="des clearfix">
+                  <nz-tooltip [nzTitle]="rec['title']" [nzPlacement]="'bottom'">
+                    <h3 nz-tooltip [innerHtml]="substrs(rec['title'])"></h3>
+                  </nz-tooltip>
+                  <nz-tooltip [nzTitle]="rec['archiveName']" [nzPlacement]="'bottom'">
+                    <span nz-tooltip>{{rec['archiveName']}}</span>
+                  </nz-tooltip>
+                </div>
+              </div>
+            </div>
+            <div class="posfix filecybox2" [routerLink]="['/archives-detail',{id:rec1['id'],arch:'1',desc:''}]">
+              <a [ngStyle]="{'background-image':'url('+rec1['picurl']+')'}"></a>
+              <div class="txt">
+                <div class="des clearfix">
+                  <nz-tooltip [nzTitle]="rec1['title']" [nzPlacement]="'bottom'">
+                    <h3 nz-tooltip  [innerHtml]="substrs(rec1['title'])"></h3>
+                  </nz-tooltip>
+                  <nz-tooltip [nzTitle]="rec1['archiveName']" [nzPlacement]="'bottom'">
+                    <span nz-tooltip>{{rec1['archiveName']}}</span>
+                  </nz-tooltip>
+                </div>
+              </div>
+            </div>
+          </dl>
+          <dl class="ct">
+            <div class="posfix filecybox3" [routerLink]="['/archives-detail',{id:rec2['id'],arch:'1',desc:''}]">
+              <a [ngStyle]="{'background-image':'url('+rec2['picurl']+')'}"></a>
+              <div class="txt">
+                <div class="des clearfix">
+                  <nz-tooltip [nzTitle]="rec2['title']" [nzPlacement]="'bottom'">
+                    <h3 nz-tooltip [innerHtml]="substrs(rec2['title'])"></h3>
+                  </nz-tooltip>
+                  <nz-tooltip [nzTitle]="rec2['archiveName']" [nzPlacement]="'bottom'">
+                    <span nz-tooltip>{{rec2['archiveName']}}</span>
+                  </nz-tooltip>
+                </div>
+              </div>
+            </div>
+            <div class="posfix filecybox4" [routerLink]="['/archives-detail',{id:rec6['id'],arch:'1',desc:''}]">
+              <a style="height: 248px;" [ngStyle]="{'background-image':'url('+rec6['picurl']+')'}"></a>
+              <div class="txt">
+                <div class="des clearfix">
+                  <nz-tooltip [nzTitle]="rec6['title']" [nzPlacement]="'bottom'">
+                    <h3 nz-tooltip [innerHtml]="substrs(rec6['title'])"></h3>
+                  </nz-tooltip>
+                  <nz-tooltip [nzTitle]="rec6['archiveName']" [nzPlacement]="'bottom'">
+                    <span nz-tooltip>{{rec6['archiveName']}}</span>
+                  </nz-tooltip>
+                </div>
+              </div>
+            </div>
+
+            <div class="posfix filecybox3" [routerLink]="['/archives-detail',{id:rec3['id'],arch:'1',desc:''}]">
+              <a [ngStyle]="{'background-image':'url('+rec3['picurl']+')'}"></a>
+              <div class="txt">
+                <div class="des clearfix">
+                  <nz-tooltip [nzTitle]="rec3['title']" [nzPlacement]="'bottom'">
+                    <h3 nz-tooltip [innerHtml]="substrs(rec3['title'])"></h3>
+                  </nz-tooltip>
+                  <nz-tooltip [nzTitle]="rec3['archiveName']" [nzPlacement]="'bottom'">
+                    <span nz-tooltip>{{rec3['archiveName']}}</span>
+                  </nz-tooltip>
+                </div>
+              </div>
+            </div>
+          </dl>
+          <dl class="rt">
+            <div class="posfix filecybox5" [routerLink]="['/archives-detail',{id:rec4['id'],arch:'1',desc:''}]">
+              <a [ngStyle]="{'background-image':'url('+rec4['picurl']+')'}"></a>
+              <div class="txt">
+                <div class="des clearfix">
+                  <nz-tooltip [nzTitle]="rec4['title']" [nzPlacement]="'bottom'">
+                    <h3 nz-tooltip [innerHtml]="substrs(rec4['title'])"></h3>
+                  </nz-tooltip>
+                  <nz-tooltip [nzTitle]="rec4['archiveName']" [nzPlacement]="'bottom'">
+                    <span nz-tooltip>{{rec4['archiveName']}}</span>
+                  </nz-tooltip>
+                </div>
+              </div>
+            </div>
+            <div class="posfix filecybox6" [routerLink]="['/archives-detail',{id:rec5['id'],arch:'1',desc:''}]">
+              <a [ngStyle]="{'background-image':'url('+rec5['picurl']+')'}"></a>
+              <div class="txt">
+                <div class="des clearfix">
+                  <nz-tooltip [nzTitle]="rec5['title']" [nzPlacement]="'bottom'">
+                    <h3 nz-tooltip [innerHtml]="substrs(rec5['title'])"></h3>
+                  </nz-tooltip>
+                  <nz-tooltip [nzTitle]="rec5['archiveName']" [nzPlacement]="'bottom'">
+                    <span nz-tooltip>{{rec5['archiveName']}}</span>
+                  </nz-tooltip>
+                </div>
+              </div>
+            </div>
+          </dl>
+        </div>
+				<a routerLink="/archives-clue/null" class="banner"><img class="banner" src="./assets/images/banner.jpg"></a>
+			</div>
+		</div>
+	<archives-foot [imgs]="false"></archives-foot>
+  <nz-back-top  ></nz-back-top>
+</nz-spin>
+  <nz-modal
+    [nzWidth] = "'500px'"
+    [nzVisible]="isVisible"
+    [nzTitle]="modalTitle"
+    [nzContent]="modalContent"
+    (nzOnCancel)="handleCancel('')">
+    <ng-template #modalTitle>
+      {{title}}
+    </ng-template>
+    <ng-template #modalContent>
+      <app-regist-compent *ngIf = "key=='1'" [(issucess)]="key" (succeed)="showModal('0','登录')" ></app-regist-compent>
+      <app-login-compent *ngIf = "key=='0'" [(issucess)]="key" (succeed)="showModal('1','注册')" (landOver)="handleCancel('success')" (fogotpwd)="showModal('2','找回密码')"></app-login-compent>
+      <app-fogot-pwd-component *ngIf = "key=='2'"  [(issucess)]="key" (succeed)="showModal('0','登录')" ></app-fogot-pwd-component>
+
+
+    </ng-template>
+  </nz-modal>

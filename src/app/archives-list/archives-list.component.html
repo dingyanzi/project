@@ -1,0 +1,96 @@
+<archives-top [ifs]="true"></archives-top>
+<a name="top" id="top"></a>
+<div class="currentLocation">
+  <div class="mainBox">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <i class="anticon anticon-home"></i>
+        <a routerLink="/archives"><span>数字档案馆</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        <a routerLink="/archives-list"><span>档案列表</span></a>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+</div>
+<div class="showCen">
+  <div class="bannerBox">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="mainBox clearfix">
+    <div class="listBox" style="min-height: 588px">
+      <div class="tip clearfix">
+        <div class="searchList">
+          <label class="shi">
+            <span>筛选</span>
+          </label>
+          <nz-select nzAllowClear [nzPlaceHolder]="'请选择格式'" [nzSize]="'default'" [(ngModel)]="selectedOption" [nzShowSearch]="true" (ngModelChange)="getLists('')">
+            <nz-option *ngFor="let option of searchOptions"
+              [nzLabel]="option.label"
+              [nzValue]="option.value">
+            </nz-option>
+          </nz-select>
+          <nz-input style="width: 200px;" [(ngModel)]="keyword" [nzSize]="'large'" [nzPlaceHolder]="'请输入关键词'" (keyup.enter)="getLists('')"></nz-input>
+          <button nz-button [nzType]="'default'" (click)="getLists('')">
+            <i class="anticon anticon-search"></i><span>搜索</span>
+          </button>
+        </div>
+      </div>
+      <div style="width: 100%;height: 30px;margin-bottom: 48px;">
+        <h3>档案列表</h3>
+      </div>
+      <div nz-row>
+        <div nz-col [nzSpan]="5">
+          <ul nz-menu [nzMode]="'inline'" style="width: 100%;">
+            <li class="mit" nz-submenu *ngFor="let tab of lists;let i = index" [nzOpen]="i == SelectedIndex" [ngClass]="{'cur':i == SelectedIndex}" >
+              <nz-tooltip title [nzTitle]="tab['name']" [nzPlacement]="'bottom'">
+                <span class="jiy" nz-tooltip style="width:175px;padding: 0px 0px;display: block;height: 42px;overflow: hidden;text-overflow: ellipsis;white-space: normal" (click)="tap(tab,i)" >
+                  <i class="anticon anticon-credit-card"></i>
+                  {{tab['name']}}
+                </span>
+              </nz-tooltip>
+
+
+              <ul>
+                <li class="shua" nz-menu-group *ngFor="let key of tab.rchapters;">
+                  <span title style="cursor: pointer" (click)="getLists(key['id'])" [ngClass]="{'current':key['id']==chid}">{{key['name']}}</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div nz-col [nzSpan]="18" style="float: right">
+          <nz-table  #nzTable [nzDataSource]="listdetail" [nzIsPagination]="false">
+            <thead nz-thead>
+            <tr>
+              <th nz-th style="text-indent: 24px;"><span>档案名</span></th>
+              <th nz-th><span>发布时间</span></th>
+            </tr>
+            </thead>
+            <tbody nz-tbody>
+            <tr nz-tbody-tr *ngFor="let data of listdetail">
+              <td nz-td style="text-indent: 24px;"><a [routerLink]="['/archives-detail',{id:data['id'],arch:'1',desc:keyword}]">{{data['name']}}</a></td>
+              <td nz-td style="width: 90px;">{{data['createDate'] | date:'yyyy-MM-dd'}}</td>
+            </tr>
+            </tbody>
+          </nz-table>
+          <nz-pagination
+            style="float: right;margin-top: 12px"
+            [nzPageSize]="showCount"
+            [(nzPageIndex)]="pageindex"
+            [nzTotal]="totalPage"
+            (nzPageIndexChange)="getLists(chid)"
+            nzShowQuickJumper nzShowTotal
+          ></nz-pagination>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+  <archives-foot [imgs]="false"></archives-foot>
+

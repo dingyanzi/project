@@ -1,0 +1,99 @@
+<archives-top [ifs]="true"></archives-top>
+<div class="currentLocation">
+  <div class="mainBox">
+    <nz-breadcrumb style="width: 820px;float: left">
+      <nz-breadcrumb-item>
+        <i class="anticon anticon-home"></i>
+        <a routerLink="/archives"><span>数字档案馆</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['/archives-list',{id:'',item:'7',ifs:'0',keyword:'',chid:''}]"><span>档案列表</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+        <span>{{detailid['name']}}</span>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <div style="width: 260px;float: right; margin-top: 6px" >
+    <span style="width:40px;font-size: 14px;color:#6A1A1D;float: left;line-height: 29px;font-weight: bolder">搜 索</span>
+    <nz-input style="width: 220px;float: left;" [(ngModel)]="searchVal" [nzPlaceHolder]="'请输入搜索内容...'"  (keyup.enter)="doSearch(1)">
+      <ng-template #addOnAfter>
+        <i class="anticon anticon-search ant-input-search-icon" (click)="doSearch(1)"></i>
+      </ng-template>
+    </nz-input>
+    </div>
+  </div>
+</div>
+<div class="showCen">
+  <div class="mainBox">
+    <div class="showBox">
+      <div class="showtip">
+        <h1>{{detailid['name']}}</h1>
+        <div class="tip">
+          <span>所属档案馆：<i>{{detailid['archiveName']}}</i></span>
+          <!--<span class="num">档号：<i>{{detailid.number}}</i></span>-->
+          <span class="see">浏览：<i>{{detailid['views']}}</i></span>
+          <!--<nz-dropdown *ngIf="userId" style="width: 70px;position: absolute;right:30px" [nzClickHide]="false" [(nzVisible)]="visible">-->
+            <!--<span (click)="iftis()"  style="cursor: pointer;" class="ant-dropdown-link" nz-dropdown>-->
+              <!--<i class="anticon anticon-download"></i>附件 <i class="anticon anticon-down"></i>-->
+            <!--</span>-->
+            <!--<ul nz-menu style="width:120px;height: 32px;overflow: auto;">-->
+              <!--<li nz-menu-item (click)="download()" *ngIf="dataList.length!=0"><p style="text-align: center;cursor: pointer">下载全部</p></li>-->
+            <!--</ul>-->
+          <!--</nz-dropdown>-->
+        </div>
+      </div>
+      <div class="showtxt">
+        <div style="padding: 12px 0px; height: 570px; overflow: hidden;margin-bottom: 24px;position: relative">
+          <div class="img">
+            <img class="blur" [src]="curImg" alt="" (click)="ifBuy()">
+          </div>
+          <p *ngIf="desc" style="position: absolute;left: 0;right: 0;bottom: 0;height: 100px;background-color: rgba(0,0,0,0.6);color: #FFFFFF;padding: 24px;overflow: hidden">
+            <span *ngIf="desc!='editpu51'&&desc!='editshuang91'&&desc!='editshuang332'" style="width:100%;display: block;height: 56px;overflow: auto;" [innerHtml]="desc">
+            </span>
+            <img *ngIf=" desc=='editpu51'" src="./assets/images/51.png" alt="">
+            <img *ngIf=" desc=='editshuang91'" src="./assets/images/91.png" alt="">
+            <img *ngIf=" desc=='editshuang332'" src="./assets/images/332.png" alt="">
+          </p>
+        </div>
+        <div class="wrapimg">
+          <a id="prev" (click)="moveRight('0')"></a>
+          <div class="imgcons">
+            <ul class="imgBtn cc" [ngStyle]="{'margin-left':vals+'px'}" style="transition: all 0.5s">
+              <li [ngClass]="{'on':i==cur}" *ngFor="let item of dataList;let i = index" (click)="fn(item,i)">
+                <div class="limit" >
+                  <img class="blur" [src]="item.showurl" style="width: 100%;height: 100%" alt="">
+                </div>
+              </li>
+            </ul>
+          </div>
+          <a id="next" (click)="moveLeft('0')"></a>
+        </div>
+
+        <div class="pint"  [innerHtml]="detailid['description']">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<archives-foot [imgs]="false"></archives-foot>
+<nz-modal [nzWrapClassName]="'vertical-center-modal'" [nzVisible]="isVisible" [nzTitle]="modalTitle" [nzWidth]="'60%'" [nzContent]="modalContent"   [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+  <ng-template #modalTitle>
+    查看图片
+  </ng-template>
+  <ng-template #modalContent>
+    <img class="blur" [src] = "curImg"  style="width: 100%;"/>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel()">
+      返 回
+    </button>
+    <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)" >
+      下载
+    </button>
+  </ng-template>
+</nz-modal>
+<div *ngIf="isVisible" class="tolds">
+  <i class="anticon anticon-left-circle" (click)="moveRight('1')"></i>
+  <i class="anticon anticon-right-circle" (click)="moveLeft('1')"></i>
+</div>

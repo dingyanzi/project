@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>南京大屠杀数字一体化平台</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<style>
+  .sorryBox{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 400px;
+    height: 150px;
+    background: #fff;
+    border: 1px solid #E0E0E0;
+    padding: 20px;
+    z-index: 9999;
+  }
+  .sorryBox p{
+    font-family: "微软雅黑";
+    line-height: 24px;
+    color: #666;
+  }
+  #sorryBg {
+    width: 100%;
+    height: 100%;
+    background-color:#fff;
+    position: fixed;
+    z-index: 99999999999999;
+    display: none;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto !important;
+  }
+  #sorryBg a{
+    color: #003cb3;
+  }
+  </style>
+<body>
+  <app-root></app-root>
+  <div id="sorryBg">
+    <div class="sorryBox">
+      <p>抱歉！官网暂不兼容浏览器，请使用其他浏览器访问(IE请使用IE9+以上浏览器)<br/>为保证使用体验，建议使用
+        <a target="_blank" href="http://rj.baidu.com/soft/detail/14744.html?ald">Chrome</a>、
+        <a target="_blank" href="http://rj.baidu.com/soft/detail/11508.html?ald">Opera</a>、
+        <a target="_blank" href="http://rj.baidu.com/soft/detail/11843.html?ald">Firefox</a>、
+        <a target="_blank" href="http://rj.baidu.com/soft/detail/12966.html?ald">Safari</a>、或<a target="_blank"  href="http://chrome.360.cn/">360安全/急速浏览器</a>进行访问</p>
+    </div>
+  </div>
+
+</body>
+<script>
+  //判断低版本浏览器
+  var browser=navigator.appName
+  var b_version=navigator.appVersion
+  var version=b_version.split(";");
+  var trim_Version  = '';
+  if(version[1]){
+    trim_Version=version[1].replace(/[ ]/g,"");
+  }else{
+  }
+
+  if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE6.0")
+  {
+    document.getElementById("sorryBg").style.display = 'block'
+
+  }
+  else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE7.0")
+  {
+    document.getElementById("sorryBg").style.display = 'block'
+
+  }
+  else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE8.0")
+  {
+    document.getElementById("sorryBg").style.display = 'block'
+  }
+  else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE9.0")
+  {
+    document.getElementById("sorryBg").style.display = 'block'
+  }
+  else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE10.0")
+  {
+    document.getElementById("sorryBg").style.display = 'block'
+  }
+  else if(browser=="Microsoft Internet Explorer" && trim_Version=="MSIE11.0")
+  {
+    document.getElementById("sorryBg").style.display = 'none'
+  }
+
+</script>
+</html>

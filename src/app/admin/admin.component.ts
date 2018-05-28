@@ -1,0 +1,65 @@
+import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { port,name,sessionKey } from '../public/datas/portName';
+import { NzMessageService,NzModalService} from 'ng-zorro-antd';
+
+@Component({
+  selector: 'admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
+})
+
+export class AdminComponent implements OnInit {
+  username:string = '';
+  now:string = '0';
+  setStorage(key){
+    localStorage.setItem(sessionKey.NOW,key);
+    this.now = key;
+  }
+  clearSession(){
+    this.router.navigate(['/public']);
+    this.alertfn("success","退出成功")
+    let ifc = localStorage.getItem(sessionKey.IFCLEAR);
+    if(ifc=="0"){
+      localStorage.removeItem(sessionKey.USERID);
+      localStorage.removeItem(sessionKey.IFCLEAR);
+    }else{
+      localStorage.clear();
+    }
+  }
+  alertfn = (type, text) => {
+    this._message.create(type, text);
+  };
+  constructor(
+    private router:Router,
+    public _message:NzMessageService
+
+) {
+  }
+
+  tis(){
+    this._message.info( `该板块暂未开放...`);
+  }
+
+   ngOnInit() {
+    let mobile = localStorage.getItem(sessionKey.MOBILE);
+    let email = localStorage.getItem(sessionKey.EMAIL);
+    let pwd = localStorage.getItem(sessionKey.PASSWORD);
+    let now = localStorage.getItem(sessionKey.NOW);
+    if(!now){
+      now = '0';
+    }
+    this.now = now;
+    if(mobile){
+      this.username = mobile;
+    }
+    if(email){
+      this.username = email;
+    }
+
+  }
+
+
+
+
+}
